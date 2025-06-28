@@ -1,0 +1,34 @@
+.custom-nav {
+  display: flex;
+  gap: 16px; /* Space between links */
+}
+
+.nav-link {
+  color: #252C32;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: none; /* Remove any default borders */
+  position: relative; /* For positioning the bottom border */
+}
+
+.nav-link.active {
+  color: #3425FF;
+  font-weight: 600;
+}
+
+/* White border as a container */
+
+
+/* Blue line within the white border */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px; /* Position within the white border (half of 6px) */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Thickness of the blue line */
+  background-color: #3425FF; /* Blue line */
+  z-index: 2; /* Ensure it’s above the white border */
+}
+
