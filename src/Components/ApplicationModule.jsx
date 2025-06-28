@@ -19,13 +19,13 @@ const ApplicationModule = () => {
 
   return (
     <div
-      className="d-flex flex-column justify-content-space-between"
+      className="d-flex flex-column"
       style={{
         backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0) 100%), url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        minHeight: 'auto',
+        height: '90%', // Removed maxHeight to match parent height dynamically
       }}
     >
       {/* Header Section */}
@@ -39,7 +39,7 @@ const ApplicationModule = () => {
       </div>
 
       {/* Content Section */}
-      <div className="d-flex flex-column ">
+      <div className="d-flex flex-column flex-grow-1">
         {/* Search Bar */}
         <div className="px-3 mb-2" style={{ flexShrink: 0 }}>
           <Box
@@ -103,7 +103,6 @@ const ApplicationModule = () => {
         <div
           className="px-3"
           style={{
-          
             flexShrink: 0,
             overflowY: 'auto',
           }}
