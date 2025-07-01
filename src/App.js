@@ -26,10 +26,7 @@ function App() {
             className="main-content d-flex flex-column px-2"
             style={{ flexGrow: 1, height: '92vh' }}
           >
-            <div
-              className="first-section"
-            
-            >
+            <div className="first-section border">
               <Routes>
                 <Route path="/students" element={<div>Students Page</div>} />
                 <Route path="/application/*" element={<ApplicationLayout />} />
@@ -46,17 +43,19 @@ function App() {
               </Routes>
             </div>
             <div
-              className="second-section flex-grow-1"
-              style={{ minHeight: '0', background: '#F6F8F9' }} // Remaining height
+              className="second-section"
+              style={{ background: '#F6F8F9', display: 'flex', minHeight: '0', overflowY: 'auto', width: '100%' }} // Ensure full width
             >
-              <Routes>
-                <Route path="/application/*" element={<Outlet />}>
-                  <Route path="analytics" element={<div>Analytics Page</div>} />
-                  <Route path="zone-application" element={<ZoneApplication />} />
-                  <Route path="application-status" element={<div>Application Status</div>} />
-                  <Route path="receipts" element={<div>Receipts</div>} />
-                </Route>
-              </Routes>
+              <div style={{ width: '100%' }}> {/* Ensure child takes full width */}
+                <Routes>
+                  <Route path="/application/*" element={<Outlet />}>
+                    <Route path="analytics" element={<div>Analytics Page</div>} />
+                    <Route path="zone-application" element={<ZoneApplication />} />
+                    <Route path="application-status" element={<div>Application Status</div>} />
+                    <Route path="receipts" element={<div>Receipts</div>} />
+                  </Route>
+                </Routes>
+              </div>
             </div>
           </main>
         </div>

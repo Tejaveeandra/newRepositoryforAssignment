@@ -1,0 +1,13 @@
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.d-flex.flex-grow-1,
+.main-content,
+.second-section {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.d-flex.flex-grow-1::-webkit-scrollbar,
+.main-content::-webkit-scrollbar,
+.second-section::-webkit-scrollbar {
+  display: none;
+}

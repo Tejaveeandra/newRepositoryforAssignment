@@ -1,13 +1,13 @@
 .custom-nav {
   display: flex;
-  gap: 16px; /* Space between links */
+ gap:36px;
 }
 
 .nav-link {
   color: #252C32;
   font-weight: 400;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 8px 0px;
   border: none; /* Remove any default borders */
   position: relative; /* For positioning the bottom border */
 }

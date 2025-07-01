@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import backgroundImage from '../Assets/BG.png';
 import './ApplicationModule.css'; // Import the new CSS file
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const ApplicationModule = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -41,7 +42,7 @@ const ApplicationModule = () => {
       {/* Content Section */}
       <div className="d-flex flex-column flex-grow-1">
         {/* Search Bar */}
-        <div className="px-3 mb-2" style={{ flexShrink: 0 }}>
+        <div className="px-3 mt-2" style={{ flexShrink: 0 }}>
           <Box
             sx={{
               width: 400,
@@ -93,7 +94,7 @@ const ApplicationModule = () => {
                 fontWeight: 400,
                 backgroundColor: 'transparent',
                 width: '100%',
-                color: '#000000',
+                color: '#9C9C9C',
               }}
             />
           </Box>
@@ -101,7 +102,7 @@ const ApplicationModule = () => {
 
         {/* Navigation Bar */}
         <div
-          className="px-3"
+          className="px-3 mt-3"
           style={{
             flexShrink: 0,
             overflowY: 'auto',
@@ -117,8 +118,10 @@ const ApplicationModule = () => {
             <Link
               className={`nav-link ${getActiveLink('/application/zone-application')}`}
               to="/application/zone-application"
+              style={{ display: 'flex', alignItems: 'center' }} 
             >
-              Distribute
+              Distribute 
+              < KeyboardArrowDownIcon /> 
             </Link>
             <Link
               className={`nav-link ${getActiveLink('/application/application-status')}`}

@@ -7,7 +7,7 @@ const ApplicationLayout = () => {
     <div >
       {/* Render ApplicationModule (header, search bar, navigation) */}
       <ApplicationModule />
-      {/* Render sub-route content below */}
+      
       <Outlet />
     </div>
   );
