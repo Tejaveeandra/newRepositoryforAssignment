@@ -1,0 +1,61 @@
+.table-scroll-container {
+  max-height: 460px; /* Adjust this height as needed */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  scrollbar-width: none;
+  width: 100%; /* Ensure the container takes full width */
+}
+
+.zone-table {
+  font-size: 14px;
+  margin-bottom: 0; /* Prevent extra spacing below table */
+  width: 100%; /* Ensure the table takes full width */
+  table-layout: auto; /* Allow columns to adjust dynamically */
+}
+
+.zone-table th {
+  font-weight: 600;
+  color: #5a5a5a;
+  position: sticky;
+  top: 0;
+  background: #f8f9fa;
+  z-index: 1;
+  white-space: nowrap; /* Prevent header text wrapping */
+}
+
+.zone-table td,
+.zone-table th {
+  vertical-align: middle;
+}
+
+/* Add right border to the first column (checkbox column) */
+.zone-table td:first-child,
+.zone-table th:first-child {
+  border-right: 1px solid #ddd; /* Add right border */
+ 
+}
+
+/* Ensure the checkbox column width is respected */
+.zone-table td:first-child,
+.zone-table th:first-child {
+  width: 50px; /* Match the size set in the column definition */
+  max-width: 50px; /* Prevent it from expanding */
+  min-width: 50px; /* Ensure it doesn't shrink below this */
+ 
+}
+
+.zone-table .btn {
+  font-size: 14px;
+}
+
+/* Optional: Ensure table cells stretch appropriately */
+.zone-table th,
+.zone-table td {
+  min-width: 100px; /* Minimum width for other columns to prevent collapse */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.table-scroll-container::-webkit-scrollbar {
+  display: none;
+}

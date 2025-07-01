@@ -6,20 +6,20 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../Components/ZoneTable.css"; // Your custom CSS
+import "../Navigation/DGMTable.css";
 
 const columnHelper = createColumnHelper();
 
-const ZoneTable = ({ onUpdate }) => {
+const DGMTable = ({ onUpdate }) => {
   const data = useMemo(
     () =>
       Array(12).fill({
         applicationFrom: "257164054",
         applicationTo: "257164500",
-        totalApplications: "447",
-        amount: "5000",
+        NoOfApplications: "447",
+       
         issuedName: "Full Name",
-        zoneName: "Zone",
+        CampusName: "Campus",
       }),
     []
   );
@@ -28,7 +28,11 @@ const ZoneTable = ({ onUpdate }) => {
     columnHelper.display({
       id: "select",
       size: 50,
-      cell: () => <input type="checkbox" />,
+      cell: () => (
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+        <input type="checkbox" />
+      </div>
+    ),
       header: () => null,
     }),
     columnHelper.accessor("applicationFrom", {
@@ -36,23 +40,20 @@ const ZoneTable = ({ onUpdate }) => {
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("applicationTo", {
-      header: "APPLICATION TO",
+      header: "APPLICATION TO NO",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("totalApplications", {
-      header: "TOTAL APPLICATIONS",
+    columnHelper.accessor("NoOfApplications", {
+      header: "NO OF APP",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("amount", {
-      header: "AMOUNT",
-      cell: (info) => info.getValue(),
-    }),
+   
     columnHelper.accessor("issuedName", {
       header: "ISSUED NAME",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("zoneName", {
-      header: "ZONE NAME",
+    columnHelper.accessor("CampusName", {
+      header: "CAMPUS NAME",
       cell: (info) => info.getValue(),
     }),
     columnHelper.display({
@@ -110,4 +111,4 @@ const ZoneTable = ({ onUpdate }) => {
   );
 };
 
-export default ZoneTable;
+export default DGMTable;

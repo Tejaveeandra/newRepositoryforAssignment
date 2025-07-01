@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ZoneTable from '../Components/ZoneTable';
+import ZoneTable from '../Navigation/ZoneTable';
 
 const ZoneApplication = () => {
   const [selectedRowData, setSelectedRowData] = useState(null);

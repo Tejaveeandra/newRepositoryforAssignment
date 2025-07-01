@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
 import ApplicationLayout from './Components/ApplicationLayout';
-import ZoneApplication from './Components/ZoneApplication';
+
+import CampusApplication from './Components/Navigation/CampusApplicaion'
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
                 <Routes>
                   <Route path="/application/*" element={<Outlet />}>
                     <Route path="analytics" element={<div>Analytics Page</div>} />
-                    <Route path="zone-application" element={<ZoneApplication />} />
+                    <Route path="zone-application" element={<CampusApplication />} />
                     <Route path="application-status" element={<div>Application Status</div>} />
                     <Route path="receipts" element={<div>Receipts</div>} />
                   </Route>
