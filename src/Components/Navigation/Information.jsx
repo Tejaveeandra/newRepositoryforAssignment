@@ -4,6 +4,8 @@ import {
     Button,
 } from '@mui/material';
 import RadialProgressChart from "./RadialProgressCharts";
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 // Reusable Arrow Icon Component
 const ArrowIcon = ({ isOpen }) => (
@@ -42,7 +44,8 @@ const Information = () => {
     );
 
     return (
-        <div className="information p-2 border-start border-top" style={{ width: '100%' }}>
+        <div className="information p-2 border-start border-top" style={{ width: '100%', background: 'linear-gradient(0deg, #FFFFFF, #FFFFFF),linear-gradient(0deg, #EFF0F0, #EFF0F0)',
+ }}>
             <h6 className="d-flex align-items-center gap-2 pb-2 border-bottom border-2">
                 <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                     <path opacity="0.4" d="M13.7 0.83H16.84C18.12 0.83 19.17 1.88 19.17 3.18V6.31C19.17 7.61 18.12 8.66 16.84 8.66H13.7C12.45 8.66 11.41 7.61 11.41 6.31V3.18C11.41 1.88 12.45 0.83 13.7 0.83Z" fill="#56555C" />
@@ -51,14 +54,15 @@ const Information = () => {
                 Previous Year Graph
             </h6>
 
-            <div className="button-wrapper" style={{ position: 'relative', width: '100%' }}>
+            <div className="button-wrapper" style={{ position: 'relative', width: '100%',   }}>
                 <div
                     className="button-group"
                     style={{
                         display: 'flex',
-                        gap: '130px',
-                        backgroundColor: '#E3E3E3',
-                        padding: '5px 10px',
+                       justifyContent:'space-between',
+                        backgroundColor: 'transparent',
+                         border: '1px solid #E3E3E3',
+                        padding: '3px 8px',
                         position: 'relative', // Positioning context
                         height: 'auto', // Allow natural height based on other buttons
                     }}
@@ -83,13 +87,13 @@ const Information = () => {
                             backgroundColor: '#3425FF',
                             height: '49px',
                             position: 'absolute', // Remove from flex flow
-                            top: '0', // Align with the top of .button-group
-                            left: '33.33%', // Position it approximately in the middle (1/3 of the way)
+                            top: '-5px', // Align with the top of .button-group
+                            left: '36.33%', // Position it approximately in the middle (1/3 of the way)
                             transform: 'translate(0)', // Fine-tune centering
                             zIndex: 10, // Ensure it stays above other content
                         }}
                     >
-                        2023-2024
+                        AY 2023-2024
                     </Button>
                     <Button
                         style={{
@@ -98,6 +102,7 @@ const Information = () => {
                             textTransform: 'none',
                             padding: '5px 15px',
                             backgroundColor: 'transparent',
+                           
                         }}
                     >
                         2024-2025
@@ -106,10 +111,9 @@ const Information = () => {
             </div>
 
             {/* === Profile Details === */}
-            <div className="card border border-secondary-subtle rounded-3 shadow-sm mt-3 p-1" style={{ position: 'relative',zIndex: 1 }}>
+            <div className="card border border-secondary-subtle rounded-3 shadow-sm mt-3 p-1" style={{ position: 'relative', zIndex: 1 }}>
                 {renderHeader("Zone Graph")}
-             <RadialProgressChart />
-                   
+                <RadialProgressChart />
             </div>
 
             {/* === Campus Details === */}
@@ -117,13 +121,19 @@ const Information = () => {
                 {renderHeader("Campus Details", "campus")}
                 {!openCard || openCard !== "campus" ? (
                     <div className="button-row">
-                        <button className="btn btn-sm rounded-pill custom-green" onClick={() => toggleCard("campus")}>Current Campus</button>
-                        <button className="btn btn-sm rounded-pill custom-pink" onClick={() => toggleCard("campus")}>Course</button>
+                        <button
+                            className="btn btn-sm rounded-pill custom-green"
+                            style={{ color: '#22C55E', borderColor: '#22C55E' }} // Apply color to text and border
+                            onClick={() => toggleCard("campus")}
+                        >
+                            +36% <ArrowUpwardIcon sx={{ color: '#22C55E', height:'15px',width:'15px' }} /> {/* Apply color to icon */}
+                        </button>
+                      
                     </div>
                 ) : (
                     <div className="p-3">
                         <p><strong>Current Campus:</strong> N/A</p>
-                        <p><strong>Course:</strong> N/A</p>
+                       
                     </div>
                 )}
             </div>
@@ -133,8 +143,8 @@ const Information = () => {
                 {renderHeader("Additional Details", "additional")}
                 {!openCard || openCard !== "additional" ? (
                     <div className="button-row">
-                        <button className="btn btn-sm rounded-pill custom-green" onClick={() => toggleCard("additional")}>Language</button>
-                        <button className="btn btn-sm rounded-pill custom-pink" onClick={() => toggleCard("additional")}>Sports</button>
+                     
+                        <button className="btn btn-sm rounded-pill custom-pink" onClick={() => toggleCard("additional")}>-6% <ArrowDownwardIcon sx={{ color: '#C52222', height:'15px',width:'15px' }}></ArrowDownwardIcon> </button>
                     </div>
                 ) : (
                     <div className="p-3">

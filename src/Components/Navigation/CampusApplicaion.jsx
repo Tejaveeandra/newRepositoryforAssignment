@@ -573,7 +573,7 @@ const CampusApplication = () => {
                         style={{
                             borderLeft: '1px solid #ccc',
                             height: '100%',
-                            padding: '10px',
+                          
                             width: '100%', // Ensures it fills the parent
                         }}
                     >

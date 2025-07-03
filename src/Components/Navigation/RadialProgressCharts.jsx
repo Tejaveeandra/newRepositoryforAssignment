@@ -9,7 +9,7 @@ import {
 const data = [
   {
     name: "Sales",
-    value: 36,
+    value: 5,
     fill: "#4f46e5", // Indigo
     color: "#4f46e5",
     change: "+36%",
@@ -25,8 +25,9 @@ const data = [
   },
   {
     name: "With Zone",
-    value: 6,
+    value: 100,
     fill: "#f43f5e", // Red
+    background: " linear-gradient(0deg, #C4C4C4, #C4C4C4),linear-gradient(195.23deg, #EDAD2B 10.7%, #DF1B47 86.26%)",
     color: "#f43f5e",
     change: "-6%",
     up: false,

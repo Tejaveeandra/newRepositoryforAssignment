@@ -52,16 +52,17 @@
  
 /* Pill buttons */
 .custom-green  {
-  background-color: #81F9494D !important;
-  color: #4A74FD !important;
+  background-color: #AAFFA54D !important;
+  color: #22C55E !important;
   font-size: 13px;
   padding: 4px 10px;
   margin: 0;
 }
  
 .custom-pink {
-  background-color: #FF55EE4D !important;
-  color: #710062 !important;
+  background-color: #FFA5A54D !important;
+  border-color:#C52222 ;
+  color: #C52222 !important;
   font-size: 13px;
   padding: 4px 10px;
   margin: 0;

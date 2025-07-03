@@ -8,19 +8,19 @@ import backgroundImage from '../Assets/BG.png';
 import './ApplicationModule.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
- 
+
 const ApplicationModule = () => {
   const [searchValue, setSearchValue] = useState('');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const location = useLocation();
   const filterRef = useRef(null);
- 
+
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
- 
+
   const getActiveLink = (path) => (location.pathname === path ? 'active' : '');
- 
+
   // Close filter on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,7 +31,7 @@ const ApplicationModule = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
- 
+
   return (
     <div
       className="d-flex flex-column position-relative"
@@ -43,24 +43,37 @@ const ApplicationModule = () => {
         height: '90%',
       }}
     >
-      {/* Background blur overlay */}
-      {filtersOpen && <div className="overlay-blur" />}
- 
+      {/* Background overlay when filters are open */}
+      {filtersOpen && (
+        <div
+          className="overlay-blur"
+          style={{
+            position: 'fixed',
+            top: '8vh',
+            left: '15vw',
+            width: '85vw',
+            height: '92vh',
+            background: '#0000004D', // Semi-transparent black
+            zIndex: 5, // Below search bar and dropdown
+          }}
+        />
+      )}
+
       {/* Header */}
       <div className="px-3 pt-2 pb-1" style={{ flexShrink: 0, zIndex: 6 }}>
         <div style={{ fontSize: '36px', fontWeight: 700, color: '#252C32' }}>
           Application Module
         </div>
         <div style={{ color: '#6E7C87', fontSize: '16px', fontWeight: 400 }}>
-        Access and manage comprehensive student details seamlessly. View personalized profiles tailored to your campus.
+          Access and manage comprehensive student details seamlessly. View personalized profiles tailored to your campus.
         </div>
       </div>
- 
+
       <div className="d-flex flex-column flex-grow-1 position-relative" style={{ zIndex: 6 }}>
         {/* Search Bar */}
-        <div className="px-3 mb-2" style={{ flexShrink: 0 }}>
+        <div className="px-3 mb-2" style={{ flexShrink: 0, zIndex: 10 }}>
           <Box
-             sx={{
+            sx={{
               width: 400,
               backgroundColor: '#FFFFFF',
               height: '5vh',
@@ -72,6 +85,7 @@ const ApplicationModule = () => {
               alignItems: 'center',
               border: '1px solid #EBECEF',
               padding: '0 8px',
+              zIndex: 10, // Ensure it stays above the overlay
             }}
           >
             <InputAdornment position="start" className="ms-2">
@@ -116,14 +130,11 @@ const ApplicationModule = () => {
             />
           </Box>
         </div>
- 
+
         {/* Filter Popout */}
         {filtersOpen && (
-          <div className="filter-popout px-3" ref={filterRef}style={{position:'absolute',zIndex:1000, width:'100%', top:'40%',}}>
-            <div className="filter-box" style={{ borderTopLeftRadius: '0',
-              borderTopRightRadius: '0',
-              borderBottomLeftRadius: '7px',
-              borderBottomRightRadius: '7px'}}>
+          <div className="filter-popout px-3" ref={filterRef} style={{ position: 'absolute', zIndex: 10, width: '100%', top: '40%' }}>
+            <div className="filter-box" style={{ borderTopLeftRadius: '0', borderTopRightRadius: '0', borderBottomLeftRadius: '7px', borderBottomRightRadius: '7px' }}>
               <div className="filter-title">Search Options</div>
               <form className="d-flex flex-column gap-3">
                 <TextField label="Academic Year" variant="outlined" fullWidth size="small" />
@@ -143,31 +154,29 @@ const ApplicationModule = () => {
                     marginLeft: '25%',
                     display: 'flex',
                     justifyContent: 'center',
-                  
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}
                 >
                   Search
                 </Button>
- 
               </form>
             </div>
           </div>
         )}
- 
+
         {/* Navigation Links */}
-        <div className="px-3" style={{ flexShrink: 0, overflowY: 'auto' }}>
+        <div className="px-3" style={{ flexShrink: 0, overflowY: 'auto', zIndex: 6 }}>
           <nav className="custom-nav">
             <Link className={`nav-link ${getActiveLink('/application/analytics')}`} to="/application/analytics">
               Analytics
             </Link>
-          <Link
+            <Link
               className={`nav-link ${getActiveLink('/application/zone-application')}`}
               to="/application/zone-application"
               style={{ display: 'flex', alignItems: 'center' }}
             >
               Distribute
-              < KeyboardArrowDownIcon />
+              <KeyboardArrowDownIcon />
             </Link>
             <Link className={`nav-link ${getActiveLink('/application/application-status')}`} to="/application/application-status">
               Application Status
@@ -181,5 +190,5 @@ const ApplicationModule = () => {
     </div>
   );
 };
- 
+
 export default ApplicationModule;
