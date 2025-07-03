@@ -1,25 +1,25 @@
 .custom-nav {
   display: flex;
- gap:36px;
+  gap: 16px; /* Space between links */
 }
-
+ 
 .nav-link {
   color: #252C32;
   font-weight: 400;
   text-decoration: none;
-  padding: 8px 0px;
+  padding: 8px 16px;
   border: none; /* Remove any default borders */
   position: relative; /* For positioning the bottom border */
 }
-
+ 
 .nav-link.active {
   color: #3425FF;
   font-weight: 600;
 }
-
+ 
 /* White border as a container */
-
-
+ 
+ 
 /* Blue line within the white border */
 .nav-link.active::after {
   content: '';
@@ -31,4 +31,31 @@
   background-color: #3425FF; /* Blue line */
   z-index: 2; /* Ensure it’s above the white border */
 }
-
+/* .filter-popout {
+  position: absolute;
+  top: 45%;
+  z-index: 5;
+  width: 55%;
+} */
+ 
+.filter-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 100%;
+  height:56vh;
+  max-width: 400px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+  backdrop-filter: blur(4px);
+}
+ 
+.filter-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 1rem;
+  color: #000;
+}
+ 
+ 
+ 

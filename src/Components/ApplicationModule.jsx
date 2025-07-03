@@ -1,50 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import backgroundImage from '../Assets/BG.png';
-import './ApplicationModule.css'; // Import the new CSS file
+import './ApplicationModule.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
+ 
 const ApplicationModule = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const location = useLocation();
-
+  const filterRef = useRef(null);
+ 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
-    // Add search logic here (e.g., filter data based on searchValue)
   };
-
-  // Determine the active nav link based on the current path
+ 
   const getActiveLink = (path) => (location.pathname === path ? 'active' : '');
-
+ 
+  // Close filter on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        setFiltersOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+ 
   return (
     <div
-      className="d-flex flex-column"
+      className="d-flex flex-column position-relative"
       style={{
         backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0) 100%), url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        height: '90%', // Removed maxHeight to match parent height dynamically
+        height: '90%',
       }}
     >
-      {/* Header Section */}
-      <div className="px-3 pt-2 pb-1" style={{ flexShrink: 0 }}>
+      {/* Background blur overlay */}
+      {filtersOpen && <div className="overlay-blur" />}
+ 
+      {/* Header */}
+      <div className="px-3 pt-2 pb-1" style={{ flexShrink: 0, zIndex: 6 }}>
         <div style={{ fontSize: '36px', fontWeight: 700, color: '#252C32' }}>
           Application Module
         </div>
         <div style={{ color: '#6E7C87', fontSize: '16px', fontWeight: 400 }}>
-          Access and manage comprehensive student details seamlessly. View personalized profiles tailored to your campus.
+        Access and manage comprehensive student details seamlessly. View personalized profiles tailored to your campus.
         </div>
       </div>
-
-      {/* Content Section */}
-      <div className="d-flex flex-column flex-grow-1">
+ 
+      <div className="d-flex flex-column flex-grow-1 position-relative" style={{ zIndex: 6 }}>
         {/* Search Bar */}
-        <div className="px-3 mt-2" style={{ flexShrink: 0 }}>
+        <div className="px-3 mb-2" style={{ flexShrink: 0 }}>
           <Box
-            sx={{
+             sx={{
               width: 400,
               backgroundColor: '#FFFFFF',
               height: '5vh',
@@ -87,6 +103,7 @@ const ApplicationModule = () => {
               placeholder="Search with application no"
               value={searchValue}
               onChange={handleSearchChange}
+              onFocus={() => setFiltersOpen(true)}
               style={{
                 border: 'none',
                 outline: 'none',
@@ -94,45 +111,68 @@ const ApplicationModule = () => {
                 fontWeight: 400,
                 backgroundColor: 'transparent',
                 width: '100%',
-                color: '#9C9C9C',
+                color: '#000000',
               }}
             />
           </Box>
         </div>
-
-        {/* Navigation Bar */}
-        <div
-          className="px-3 mt-3"
-          style={{
-            flexShrink: 0,
-            overflowY: 'auto',
-          }}
-        >
+ 
+        {/* Filter Popout */}
+        {filtersOpen && (
+          <div className="filter-popout px-3" ref={filterRef}style={{position:'absolute',zIndex:1000, width:'100%', top:'40%',}}>
+            <div className="filter-box" style={{ borderTopLeftRadius: '0',
+              borderTopRightRadius: '0',
+              borderBottomLeftRadius: '7px',
+              borderBottomRightRadius: '7px'}}>
+              <div className="filter-title">Search Options</div>
+              <form className="d-flex flex-column gap-3">
+                <TextField label="Academic Year" variant="outlined" fullWidth size="small" />
+                <TextField label="Surname" variant="outlined" fullWidth size="small" />
+                <TextField label="Student Name" variant="outlined" fullWidth size="small" />
+                <TextField label="Parent Name" variant="outlined" fullWidth size="small" />
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#B0B0B0',
+                    borderRadius: '6px',
+                    textTransform: 'none',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    width: '45%',
+                    marginTop: '12%',
+                    marginLeft: '25%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                  
+                    alignItems: 'center'
+                  }}
+                >
+                  Search
+                </Button>
+ 
+              </form>
+            </div>
+          </div>
+        )}
+ 
+        {/* Navigation Links */}
+        <div className="px-3" style={{ flexShrink: 0, overflowY: 'auto' }}>
           <nav className="custom-nav">
-            <Link
-              className={`nav-link ${getActiveLink('/application/analytics')}`}
-              to="/application/analytics"
-            >
+            <Link className={`nav-link ${getActiveLink('/application/analytics')}`} to="/application/analytics">
               Analytics
             </Link>
-            <Link
+          <Link
               className={`nav-link ${getActiveLink('/application/zone-application')}`}
               to="/application/zone-application"
-              style={{ display: 'flex', alignItems: 'center' }} 
+              style={{ display: 'flex', alignItems: 'center' }}
             >
-              Distribute 
-              < KeyboardArrowDownIcon /> 
+              Distribute
+              < KeyboardArrowDownIcon />
             </Link>
-            <Link
-              className={`nav-link ${getActiveLink('/application/application-status')}`}
-              to="/application/application-status"
-            >
+            <Link className={`nav-link ${getActiveLink('/application/application-status')}`} to="/application/application-status">
               Application Status
             </Link>
-            <Link
-              className={`nav-link ${getActiveLink('/application/receipts')}`}
-              to="/application/receipts"
-            >
+            <Link className={`nav-link ${getActiveLink('/application/receipts')}`} to="/application/receipts">
               Receipts
             </Link>
           </nav>
@@ -141,5 +181,5 @@ const ApplicationModule = () => {
     </div>
   );
 };
-
+ 
 export default ApplicationModule;

@@ -9,7 +9,8 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import CampusTable from '../Navigation/CampusTable'
+import CampusTable from '../Navigation/CampusTable';
+import Information from '../Navigation/Information';
 
 const CampusApplication = () => {
     const [selectedRowData, setSelectedRowData] = useState(null);
@@ -47,15 +48,15 @@ const CampusApplication = () => {
                     display: 'flex',
                     gap: '10px',
                     width: '100%',
-                    flexWrap: 'nowrap',
+                    // Removed flexWrap: 'nowrap' to allow flexibility
                 }}
             >
                 <div
                     className="left-container LeftContainer"
                     style={{
-                        flex: 1,
+                        flex: 3, // 60% of the total flex (3 out of 5 units)
                         boxSizing: 'border-box',
-                        width: '75%',
+                        minWidth: '0', // Prevents flex shrinkage issues
                     }}
                 >
                     <div
@@ -169,7 +170,6 @@ const CampusApplication = () => {
                                 }}
                             >
                                 <Button
-
                                     style={{
                                         backgroundColor: 'transparent',
                                         color: '#616161',
@@ -196,11 +196,9 @@ const CampusApplication = () => {
                                     style={{
                                         borderRadius: '20px',
                                         color: '#FFFFFF',
-
                                         textTransform: 'none',
                                         padding: '5px 15px',
-
-                                        backgroundColor: '#3425FF'
+                                        backgroundColor: '#3425FF',
                                     }}
                                 >
                                     Campus
@@ -213,7 +211,7 @@ const CampusApplication = () => {
                         onSubmit={(values) => {
                             console.log(values);
                         }}
-                        enableReinitialize={true} // Allows form to reinitialize with new values
+                        enableReinitialize={true}
                     >
                         {({ values, setFieldValue }) => (
                             <Form>
@@ -266,7 +264,7 @@ const CampusApplication = () => {
                                                         width: '100%',
                                                     }}
                                                     value={selectedRowData?.cityName || values.cityName}
-                                                    onChange={(e) => setFieldValue('capusName', e.target.value)}
+                                                    onChange={(e) => setFieldValue('campusName', e.target.value)}
                                                 >
                                                     <MenuItem value="" disabled>
                                                         Select Campus
@@ -315,7 +313,7 @@ const CampusApplication = () => {
                                                     value={selectedRowData?.applicationTo || values.applicationTo}
                                                     variant="outlined"
                                                     placeholder="Application No From"
-                                                    InputProps={{ style: { height: '40px', fontSize: '14px', color: '101828' } }}
+                                                    InputProps={{ style: { height: '40px', fontSize: '14px', color: '#101828' } }}
                                                     style={{ marginTop: '8px' }}
                                                     onChange={(e) => setFieldValue('availableApplicationNoFrom', e.target.value)}
                                                 />
@@ -353,7 +351,7 @@ const CampusApplication = () => {
                                                     value={selectedRowData?.applicationTo || values.applicationTo}
                                                     variant="outlined"
                                                     placeholder="Application No To"
-                                                    InputProps={{ style: { height: '40px', fontSize: '14px', color: '101828' } }}
+                                                    InputProps={{ style: { height: '40px', fontSize: '14px', color: '#101828' } }}
                                                     style={{ marginTop: '8px' }}
                                                     onChange={(e) => setFieldValue('applicationTo', e.target.value)}
                                                 />
@@ -377,8 +375,6 @@ const CampusApplication = () => {
                                                     onChange={(e) => setFieldValue('mobileNo', e.target.value)}
                                                 />
                                             </div>
-
-
                                         </div>
                                         <div
                                             className="right-column"
@@ -466,7 +462,6 @@ const CampusApplication = () => {
                                                     {/* Add more issuedTo options as needed */}
                                                 </Field>
                                             </div>
-
                                             <div>
                                                 <Typography
                                                     variant="body2"
@@ -532,7 +527,8 @@ const CampusApplication = () => {
                                                     value={selectedRowData?.issueDate || values.issueDate}
                                                     onChange={(e) => setFieldValue('issueDate', e.target.value)}
                                                 />
-                                            </div>                                        </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div
                                         className="submit-button"
@@ -566,9 +562,10 @@ const CampusApplication = () => {
                 <div
                     className="right-panel"
                     style={{
-                        flex: 0.3,
+                        flex: 1.5, // 40% of the total flex (2 out of 5 units)
                         boxSizing: 'border-box',
-                        width: '25%',
+                        minWidth: '0', // Prevents flex shrinkage issues
+                        width: '100%', // Ensures it takes full available space
                     }}
                 >
                     <div
@@ -577,9 +574,10 @@ const CampusApplication = () => {
                             borderLeft: '1px solid #ccc',
                             height: '100%',
                             padding: '10px',
+                            width: '100%', // Ensures it fills the parent
                         }}
                     >
-                        <div>Right Panel Content</div>
+                        <Information />
                     </div>
                 </div>
             </div>

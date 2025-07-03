@@ -53,7 +53,7 @@ const DGMApplication = () => {
         <div
           className="left-container LeftContainer"
           style={{
-            flex: 1,
+            flex: 3,
             boxSizing: 'border-box',
             width: '75%',
           }}
@@ -535,7 +535,7 @@ const DGMApplication = () => {
         <div
           className="right-panel"
           style={{
-            flex: 0.3,
+            flex: 1.5,
             boxSizing: 'border-box',
             width: '25%',
           }}
